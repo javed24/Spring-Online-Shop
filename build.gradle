@@ -1,0 +1,43 @@
+group 'com.inventory.project'
+version '1.0-SNAPSHOT'
+
+// Include the Spring Boot plugin
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.1.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+bootJar {
+    baseName = 'gs-accessing-data-mysql'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    //compile("org.springframework.boot:spring-boot-starter-web")
+    compile('org.springframework.boot:spring-boot-starter-web','org.apache.tomcat.embed:tomcat-embed-jasper'
+            ,'javax.servlet:jstl')
+    compile 'org.apache.tomcat:tomcat-dbcp:8.0.32'
+// Use MySQL Connector-J
+    compile 'mysql:mysql-connector-java'
+    compile 'org.springframework:spring-orm:4.2.5.RELEASE'
+    compile 'org.hibernate:hibernate-core:5.2.1.Final'
+    compile group: 'org.apache.tomcat', name: 'tomcat-jdbc', version: '7.0.19'
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
