@@ -1,5 +1,6 @@
 package com.inventory.project.controller;
 
+import com.inventory.project.model.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@SessionAttributes("cart")
 public class ProductController {
     @Autowired
     private ProductService ps;
@@ -69,6 +71,26 @@ public class ProductController {
             ps.save(product);
             return "redirect:";
         }
+    }
+    @RequestMapping("/user")
+    public String displayProductsUser(ModelMap model){
+        List<Product> products = ps.getAll();
+        model.addAttribute("products", products);
+        return "user";
+    }
+
+    @ModelAttribute("cart")
+    public Cart addtoseesion(){
+        return new Cart();
+    }
+
+    @RequestMapping("/addToCart")
+    public String setCart(@ModelAttribute("cart")Cart cartAtt, @RequestParam Long id){
+        List<Product> cartList = cartAtt.getProducts();
+        Product p = ps.getProductById(id);
+        cartList.add(p);
+        cartAtt.setUsername("tempuser");
+        return "redirect:/cart";
 
     }
 }

@@ -11,5 +11,4 @@ public class AppConfig {
 
     @Autowired
     private Environment env;
-
 }
