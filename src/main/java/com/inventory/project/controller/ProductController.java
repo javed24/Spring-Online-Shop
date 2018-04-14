@@ -26,7 +26,7 @@ public class ProductController {
         List<Product> products = ps.getAll();
         model.addAttribute("products", products);
         model.addAttribute("productAtt", new Product());
-        System.out.print(">>>>>>>>"+products.get(0).getProductName());
+        //System.out.print(">>>>>>>>"+products.get(2).getId());
         return "home";
 
     }
@@ -37,11 +37,38 @@ public class ProductController {
             return "home";
         }
         else {
-            System.out.println("name is:>>>>>>>> " + product.getProductName());
-            //ps.save(product);
+            System.out.println("\n name is:>>>>>>>> " + product.getProductQuantity());
+            ps.save(product);
+            System.out.println("id is: "+ product.getId());
             return "redirect:";
         }
 
     }
+    @RequestMapping(value = "delete", method = RequestMethod.GET)
+    public String deleteProduct(@RequestParam Long id){
+        Product product = ps.getProductById(id);
+        ps.delete(product);
+        return "redirect:";
+    }
 
+    @RequestMapping(value="/edit", method = RequestMethod.GET)
+    public String editProduct(@RequestParam Long id, ModelMap modelMap){
+        Product product = ps.getProductById(id);
+        modelMap.put("product", product);
+        return "edit";
+    }
+
+
+    @RequestMapping(value="/edit", method = RequestMethod.POST)
+    public String editProduct(@ModelAttribute("product") Product product,BindingResult result) {
+        if (result.hasErrors()){
+            return "edit";
+        }
+        else {
+            System.out.println("name is:>>>>>>>> " + product.getProductName());
+            ps.save(product);
+            return "redirect:";
+        }
+
+    }
 }
