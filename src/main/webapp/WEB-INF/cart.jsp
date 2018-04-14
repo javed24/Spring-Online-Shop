@@ -25,7 +25,7 @@
         <td>${product.getProductQuantity()}</td>
         <td>${product.getProductPrice()}</td>
         <td>
-        <a href="#"><button class="btn btn-primary" value="deleteFromCart" name="deleteFromCart">Delete from cart</button></a>
+        <a href="deleteFromCart?id=${product.id}"><button class="btn btn-primary" value="deleteFromCart" name="deleteFromCart">Delete from cart</button></a>
         </td>
         </tr>
     </c:forEach>
