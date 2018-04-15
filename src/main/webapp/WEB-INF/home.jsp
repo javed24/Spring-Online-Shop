@@ -51,15 +51,17 @@
 
     <tbody>
     <c:forEach items="${products}" var="product">
-    <tr>
-    <td>${product.getProductName()}</td>
-    <td>${product.getProductQuantity()}</td>
-    <td>${product.getProductPrice()}</td>
-    <td>
-    <a href="delete?id=${product.id}"}><button class="btn btn-primary" value="delete" name="delete">Delete</button></a>
-    <a href="edit?id=${product.id}"}><button class="btn btn-primary" value="edit" name="edit">Edit</button></a>
-    </td>
-    </tr>
+    <c:if test="${product.productQuantity != 0}">
+        <tr>
+        <td>${product.getProductName()}</td>
+        <td>${product.getProductQuantity()}</td>
+        <td>${product.getProductPrice()}</td>
+        <td>
+        <a href="delete?id=${product.id}"><button class="btn btn-primary" value="delete" name="delete">Delete</button></a>
+        <a href="edit?id=${product.id}"><button class="btn btn-primary" value="edit" name="edit">Edit</button></a>
+        </td>
+        </tr>
+    </c:if>
     </c:forEach>
 </tbody>
 </table>
