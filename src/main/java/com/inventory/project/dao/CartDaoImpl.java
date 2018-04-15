@@ -1,5 +1,6 @@
 package com.inventory.project.dao;
 
+import com.inventory.project.model.Cart;
 import com.inventory.project.model.Product;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -50,6 +51,24 @@ public class CartDaoImpl implements CartDao {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.saveOrUpdate(product);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    @Override
+    public void addAllItemsToCart(List<Product> allProducts) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.saveOrUpdate(allProducts);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    @Override
+    public void saveToCart(Cart cart){
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.saveOrUpdate(cart);
         session.getTransaction().commit();
         session.close();
     }

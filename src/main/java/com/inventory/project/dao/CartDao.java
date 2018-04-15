@@ -8,4 +8,6 @@ public interface CartDao {
     List<Product> getAllItems();
     void deleteItem(Product product);
     void addItemToCart(Product product);
+    void addAllItemsToCart(List<Product> allProducts);
+    void saveToCart(Cart cart);
 }

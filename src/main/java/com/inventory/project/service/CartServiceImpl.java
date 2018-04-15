@@ -1,6 +1,7 @@
 package com.inventory.project.service;
 
 import com.inventory.project.dao.CartDao;
+import com.inventory.project.model.Cart;
 import com.inventory.project.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,14 @@ public class CartServiceImpl implements CartService {
     @Override
     public void addItemToCart(Product product) {
         cd.addItemToCart(product);
+    }
+    @Override
+    public void addAllItemsToCart(List<Product> allProducts) {
+        cd.addAllItemsToCart(allProducts);
+    }
+
+    @Override
+    public void saveToCart(Cart cart) {
+        cd.saveToCart(cart);
     }
 }
