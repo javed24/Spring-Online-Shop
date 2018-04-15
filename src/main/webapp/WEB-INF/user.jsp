@@ -7,6 +7,19 @@
 </head>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link active" href="/">Admin</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="user">User</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="cart">Cart</a>
+  </li>
+</ul>
+
 <table class="table table-hover" style="margin: 2em; max-width:700px">
 <thead>
     <tr>
@@ -18,16 +31,16 @@
   </thead>
 
     <tbody>
-    <c:forEach items="${products}" var="product">
-    <tr>
-    <td>${product.getProductName()}</td>
-    <td>${product.getProductQuantity()}</td>
-    <td>${product.getProductPrice()}</td>
-    <td>
-    <a href="addToCart?id=${product.id}"}><button class="btn btn-primary" value="addToCart" name="addToCart">Add to cart</button></a>
-    </td>
-    </tr>
-    </c:forEach>
-</tbody>
+        <c:forEach items="${products}" var="product">
+        <tr>
+        <td>${product.getProductName()}</td>
+        <td>${product.getProductQuantity()}</td>
+        <td>${product.getProductPrice()}</td>
+        <td>
+        <a href="addToCart?id=${product.id}"}><button class="btn btn-primary" value="addToCart" name="addToCart">Add to cart</button></a>
+        </td>
+        </tr>
+        </c:forEach>
+    </tbody>
 </table>
 </html>

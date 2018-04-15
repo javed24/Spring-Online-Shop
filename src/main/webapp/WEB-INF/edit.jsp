@@ -7,6 +7,17 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <html xmlns="http://www.w3.org/1999/xhtml">
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link active" href="/">Admin</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="user">User</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="cart">Cart</a>
+  </li>
+</ul>
 <form:form modelAttribute="product"  style="margin: 2em; max-width:700px">
             <h4>Edit Product Form</h4>
                               <div class="form-group">

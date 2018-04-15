@@ -80,7 +80,7 @@ public class ProductController {
     }
 
     @ModelAttribute("cart")
-    public Cart addtoseesion(){
+    public Cart addToSeesion(){
         return new Cart();
     }
 
@@ -88,9 +88,15 @@ public class ProductController {
     public String setCart(@ModelAttribute("cart")Cart cartAtt, @RequestParam Long id){
         List<Product> cartList = cartAtt.getProducts();
         Product p = ps.getProductById(id);
+        for(int i=0; i<cartList.size();i++){
+            if(cartList.get(i).getId()==id){
+                cartList.get(i).setProductQuantity(cartList.get(i).getProductQuantity()+1);
+                return "redirect:/cart";
+            }
+        }
+        p.setProductQuantity(1);
         cartList.add(p);
-        cartAtt.setUsername("tempuser");
+        cartAtt.setUsername("temp user");
         return "redirect:/cart";
-
     }
 }
