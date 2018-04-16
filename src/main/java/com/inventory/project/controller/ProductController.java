@@ -28,7 +28,6 @@ public class ProductController {
         List<Product> products = ps.getAll();
         model.addAttribute("products", products);
         model.addAttribute("productAtt", new Product());
-        //System.out.print(">>>>>>>>"+products.get(2).getId());
         return "home";
 
     }
@@ -39,9 +38,15 @@ public class ProductController {
             return "home";
         }
         else {
-            System.out.println("\n name is:>>>>>>>> " + product.getProductQuantity());
-            ps.save(product);
-            System.out.println("id is: "+ product.getId());
+            if(ps.getAll().contains(product)){
+                System.out.println("found product: "+product.getProductName()+" with qty 0 / "+ product.getProductQuantity());
+                ps.getProductById(product.getId()).setProductQuantity(product.getProductQuantity());
+                ps.save(product);
+            }
+            else{
+                System.out.println("Fix your if condition");
+                ps.save(product);
+            }
             return "redirect:";
         }
 
